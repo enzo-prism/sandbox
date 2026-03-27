@@ -15,6 +15,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { ElevenLabsConvaiWidget } from "@/components/elevenlabs-convai-widget"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
@@ -533,6 +534,20 @@ function App() {
                     </a>
                   </Button>
                 </div>
+
+                <Card className="max-w-xl rounded-[1.75rem] border-primary/10 bg-white/70 py-0 shadow-[0_18px_45px_-32px_rgba(33,60,57,0.32)] backdrop-blur">
+                  <CardContent className="flex items-start gap-4 p-5">
+                    <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Sparkles className="size-5" />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-sm font-semibold tracking-[0.18em] text-primary uppercase">AI concierge</p>
+                      <p>
+                        The ElevenLabs voice and chat assistant lives in the bottom-right corner for quick questions after hours, basic office details, and lightweight booking help.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               <Card className="rounded-[2rem] border-white/80 bg-white/82 py-0 shadow-[0_24px_60px_-38px_rgba(33,60,57,0.45)] backdrop-blur">
@@ -577,10 +592,12 @@ function App() {
         </section>
       </main>
 
-      <footer className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-6">
+      <footer className="mx-auto flex max-w-6xl flex-col gap-3 px-4 pb-28 pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-6 md:pb-8">
         <p>Dr. Wong Dental concept site for Palo Alto.</p>
         <p>Built as a single-page shadcn/ui experience.</p>
       </footer>
+
+      <ElevenLabsConvaiWidget />
     </div>
   )
 }
