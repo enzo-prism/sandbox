@@ -152,7 +152,7 @@ function App() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col items-start gap-3 sm:flex-row">
                 <Button size="lg" asChild className="h-12 rounded-full px-6 text-sm font-semibold">
                   <a href="#contact">
                     Request a visit
@@ -310,16 +310,18 @@ function App() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col items-start gap-3 sm:flex-row">
                 <Button size="lg" asChild className="h-12 rounded-full px-6 text-sm font-semibold">
                   <a href="tel:+16505550148">
                     <PhoneCall className="size-4" />
-                    (650) 555-0148
+                    <span className="sm:hidden">Call office</span>
+                    <span className="hidden sm:inline">(650) 555-0148</span>
                   </a>
                 </Button>
                 <Button variant="secondary" size="lg" asChild className="h-12 rounded-full px-6 text-sm font-semibold">
                   <a href="mailto:hello@drwongdental.com?subject=New%20patient%20consultation">
-                    hello@drwongdental.com
+                    <span className="sm:hidden">Email office</span>
+                    <span className="hidden sm:inline">hello@drwongdental.com</span>
                   </a>
                 </Button>
               </div>

@@ -1,8 +1,11 @@
-import { createElement, useEffect, useState } from "react"
+import { createElement, useEffect, useState, type CSSProperties } from "react"
 
 const SCRIPT_ID = "elevenlabs-convai-widget-script"
 const SCRIPT_SRC = "https://unpkg.com/@elevenlabs/convai-widget-embed"
-const MOBILE_QUERY = "(max-width: 640px)"
+const MOBILE_MAX_WIDTH = 640
+const MOBILE_MAX_HEIGHT = 480
+const SHORT_MOBILE_MAX_HEIGHT = 700
+type WidgetStyle = CSSProperties & Record<`--${string}`, string>
 
 const desktopWidgetStyle = {
   "--el-base": "#ffffff",
@@ -23,7 +26,7 @@ const desktopWidgetStyle = {
   "--el-sheet-radius": "24px",
   "--el-compact-sheet-radius": "24px",
   "--el-dropdown-sheet-radius": "20px",
-} as React.CSSProperties
+} as WidgetStyle
 
 const mobileWidgetStyle = {
   ...desktopWidgetStyle,
@@ -31,10 +34,11 @@ const mobileWidgetStyle = {
   "--el-button-radius": "999px",
   "--el-sheet-radius": "22px",
   "--el-compact-sheet-radius": "22px",
-} as React.CSSProperties
+} as WidgetStyle
 
 export function ElevenLabsConvaiWidget() {
   const [isMobile, setIsMobile] = useState(false)
+  const [isShortMobile, setIsShortMobile] = useState(false)
 
   useEffect(() => {
     const loadScript = () => {
@@ -64,26 +68,40 @@ export function ElevenLabsConvaiWidget() {
       return
     }
 
-    const mediaQuery = window.matchMedia(MOBILE_QUERY)
-    const updateVariant = () => setIsMobile(mediaQuery.matches)
+    const updateVariant = () => {
+      const mobile = window.innerWidth <= MOBILE_MAX_WIDTH || window.innerHeight <= MOBILE_MAX_HEIGHT
+      setIsMobile(mobile)
+      setIsShortMobile(mobile && window.innerHeight <= SHORT_MOBILE_MAX_HEIGHT)
+    }
 
     updateVariant()
-    mediaQuery.addEventListener("change", updateVariant)
+    window.addEventListener("resize", updateVariant)
 
-    return () => mediaQuery.removeEventListener("change", updateVariant)
+    return () => {
+      window.removeEventListener("resize", updateVariant)
+    }
   }, [])
+
+  const widgetStyle = isMobile
+    ? {
+        ...mobileWidgetStyle,
+        "--el-overlay-padding": isShortMobile
+          ? "max(12px, calc(env(safe-area-inset-top) + 6px))"
+          : mobileWidgetStyle["--el-overlay-padding"],
+      }
+    : desktopWidgetStyle
 
   return createElement("elevenlabs-convai", {
     "agent-id": "agent_6401kmp8pjw0fc48j493nzkybmr0",
     variant: isMobile ? "tiny" : "compact",
-    placement: "bottom-right",
+    placement: isShortMobile ? "top-left" : "bottom-right",
     "avatar-orb-color-1": "#20262b",
     "avatar-orb-color-2": "#d9dfda",
     "show-avatar-when-collapsed": "true",
     "show-agent-status": "true",
     "collect-feedback": "true",
-    dismissible: "true",
-    style: isMobile ? mobileWidgetStyle : desktopWidgetStyle,
+    dismissible: isMobile ? "false" : "true",
+    style: widgetStyle,
     "aria-label": "Open Dr. Wong's AI concierge",
   })
 }
