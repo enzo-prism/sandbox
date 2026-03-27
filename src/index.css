@@ -129,6 +129,7 @@
 
   body {
     @apply min-h-screen bg-background font-sans text-foreground antialiased;
+    overflow-x: hidden;
     background-image:
       radial-gradient(circle at 0% 0%, rgba(102, 163, 154, 0.18), transparent 32%),
       radial-gradient(circle at 100% 15%, rgba(223, 195, 141, 0.16), transparent 24%),
@@ -144,14 +145,19 @@
   h3,
   h4 {
     @apply font-heading tracking-[-0.03em] text-foreground;
+    text-wrap: balance;
   }
 
   p {
-    @apply text-[15px] leading-7 text-muted-foreground md:text-base;
+    @apply text-[15px] leading-6 text-muted-foreground md:text-base md:leading-7;
   }
 
   a {
     @apply transition-colors;
+  }
+
+  section[id] {
+    scroll-margin-top: 6rem;
   }
 
   ::selection {

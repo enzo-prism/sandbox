@@ -130,14 +130,16 @@ function App() {
   return (
     <div className="relative min-h-screen">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6 md:py-4">
           <a href="#top" className="flex items-center gap-3">
-            <div className="flex size-11 items-center justify-center rounded-[1.25rem] bg-primary text-sm font-semibold tracking-[0.22em] text-primary-foreground shadow-sm">
+            <div className="flex size-10 items-center justify-center rounded-[1.1rem] bg-primary text-sm font-semibold tracking-[0.22em] text-primary-foreground shadow-sm md:size-11 md:rounded-[1.25rem]">
               DW
             </div>
-            <div>
-              <p className="text-sm font-semibold tracking-[0.22em] text-primary uppercase">Dr. Wong Dental</p>
-              <p className="text-sm text-muted-foreground">Palo Alto, California</p>
+            <div className="space-y-0.5">
+              <p className="text-[11px] font-semibold tracking-[0.22em] text-primary uppercase sm:text-sm">
+                Dr. Wong Dental
+              </p>
+              <p className="text-xs text-muted-foreground sm:text-sm">Palo Alto, California</p>
             </div>
           </a>
 
@@ -152,6 +154,17 @@ function App() {
               </a>
             ))}
           </nav>
+
+          <div className="flex items-center gap-2 sm:hidden">
+            <Button variant="outline" size="icon" asChild className="size-10 rounded-full border-border/80 bg-background/85">
+              <a href="tel:+16505550148" aria-label="Call Dr. Wong Dental">
+                <PhoneCall className="size-4" />
+              </a>
+            </Button>
+            <Button size="sm" asChild className="h-10 rounded-full px-4 text-sm">
+              <a href="#contact">Book</a>
+            </Button>
+          </div>
 
           <div className="hidden items-center gap-2 sm:flex">
             <Button variant="ghost" size="sm" asChild className="rounded-full px-4">
@@ -175,8 +188,8 @@ function App() {
             <div className="absolute bottom-8 left-1/3 h-40 w-40 rounded-full bg-accent/70 blur-3xl" />
           </div>
 
-          <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-18 pt-14 md:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pb-24 lg:pt-20">
-            <div className="space-y-8">
+          <div className="relative mx-auto grid max-w-6xl gap-9 px-4 pb-14 pt-10 md:gap-12 md:px-6 md:pb-18 md:pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pb-24 lg:pt-20">
+            <div className="space-y-7 md:space-y-8">
               <Badge
                 variant="secondary"
                 className="rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary"
@@ -184,11 +197,11 @@ function App() {
                 Welcoming new patients in Palo Alto
               </Badge>
 
-              <div className="space-y-5">
-                <h1 className="max-w-2xl text-5xl leading-[0.96] md:text-6xl lg:text-7xl">
+              <div className="space-y-4 md:space-y-5">
+                <h1 className="max-w-2xl text-[2.8rem] leading-[0.92] sm:text-5xl md:text-6xl lg:text-7xl">
                   Thoughtful dentistry with a calm, neighborhood feel.
                 </h1>
-                <p className="max-w-xl text-base leading-8 md:text-lg">
+                <p className="max-w-xl text-[15px] leading-7 sm:text-base md:text-lg">
                   Dr. Wong's practice is designed for Palo Alto families, professionals, and anyone who wants modern dental care without the rushed atmosphere.
                 </p>
               </div>
@@ -208,14 +221,14 @@ function App() {
                 </Button>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:px-0 sm:pb-0 md:grid-cols-3">
                 {heroHighlights.map((item) => {
                   const Icon = item.icon
 
                   return (
                     <Card
                       key={item.title}
-                      className="rounded-[1.65rem] border-white/70 bg-white/70 shadow-[0_18px_45px_-28px_rgba(33,60,57,0.45)] backdrop-blur"
+                      className="min-w-[16.75rem] snap-start rounded-[1.65rem] border-white/70 bg-white/70 shadow-[0_18px_45px_-28px_rgba(33,60,57,0.45)] backdrop-blur sm:min-w-0"
                     >
                       <CardContent className="space-y-4 p-5">
                         <div className="flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
@@ -320,11 +333,13 @@ function App() {
                 A single-page experience that positions Dr. Wong as the local choice for preventive, cosmetic, restorative, and urgent dental care.
               </p>
             </div>
+            <Separator className="md:hidden" />
             <Separator className="hidden md:block" orientation="vertical" />
             <div className="space-y-1">
               <p className="text-xs font-semibold tracking-[0.22em] text-primary uppercase">Best fit patients</p>
               <p className="text-sm leading-7 text-muted-foreground">Families, professionals, and neighbors who want clarity and consistency.</p>
             </div>
+            <Separator className="md:hidden" />
             <Separator className="hidden md:block" orientation="vertical" />
             <div className="space-y-1">
               <p className="text-xs font-semibold tracking-[0.22em] text-primary uppercase">Signature tone</p>
@@ -333,13 +348,13 @@ function App() {
           </div>
         </section>
 
-        <section id="services" className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+        <section id="services" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16 md:px-6 md:py-20">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl space-y-4">
               <Badge variant="outline" className="rounded-full border-primary/20 bg-primary/5 px-3 py-1 text-primary">
                 Services
               </Badge>
-              <h2 className="text-4xl md:text-5xl">Care that keeps everyday dentistry in one trusted place.</h2>
+              <h2 className="text-[2.35rem] md:text-5xl">Care that keeps everyday dentistry in one trusted place.</h2>
             </div>
             <p className="max-w-xl text-base leading-8">
               The service mix is broad enough to feel like a true local practice, while the language stays focused on comfort, clarity, and thoughtful decision-making.
@@ -373,13 +388,13 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="mx-auto max-w-6xl px-4 py-8 md:px-6">
-          <div className="grid gap-10 rounded-[2.4rem] border border-border/70 bg-white/66 p-6 shadow-[0_24px_60px_-36px_rgba(33,60,57,0.38)] backdrop-blur lg:grid-cols-[1.02fr_0.98fr] lg:p-8">
+        <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-8 md:px-6">
+          <div className="grid gap-8 rounded-[2.4rem] border border-border/70 bg-white/66 p-5 shadow-[0_24px_60px_-36px_rgba(33,60,57,0.38)] backdrop-blur sm:p-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10 lg:p-8">
             <div className="space-y-6">
               <Badge variant="outline" className="rounded-full border-primary/20 bg-primary/5 px-3 py-1 text-primary">
                 The practice approach
               </Badge>
-              <h2 className="max-w-xl text-4xl md:text-5xl">Modern dentistry for people who want precision without pressure.</h2>
+              <h2 className="max-w-xl text-[2.35rem] md:text-5xl">Modern dentistry for people who want precision without pressure.</h2>
               <p className="max-w-2xl text-base leading-8">
                 This concept positions Dr. Wong as the kind of dentist patients recommend because appointments feel calm, options are explained clearly, and treatment is paced around real priorities instead of sales energy.
               </p>
@@ -402,7 +417,7 @@ function App() {
               </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
               <Card className="rounded-[1.9rem] border-primary/10 bg-primary py-0 text-primary-foreground md:col-span-2">
                 <CardContent className="space-y-5 p-6">
                   <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.22em] text-primary-foreground/70 uppercase">
@@ -439,14 +454,14 @@ function App() {
           </div>
         </section>
 
-        <section id="faq" className="mx-auto max-w-6xl px-4 py-20 md:px-6">
-          <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
+        <section id="faq" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16 md:px-6 md:py-20">
+          <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-10">
             <Card className="rounded-[2.1rem] border-border/70 bg-white/70 py-0 shadow-[0_24px_60px_-38px_rgba(33,60,57,0.45)] backdrop-blur">
               <CardHeader className="space-y-4 px-6 pt-6 pb-4">
                 <Badge variant="outline" className="w-fit rounded-full border-primary/20 bg-primary/5 px-3 py-1 text-primary">
                   Why this page works
                 </Badge>
-                <CardTitle className="text-4xl md:text-5xl">A strong first impression without adding booking complexity.</CardTitle>
+                <CardTitle className="text-[2.35rem] md:text-5xl">A strong first impression without adding booking complexity.</CardTitle>
                 <CardDescription className="text-base leading-8">
                   The single page gives Dr. Wong a polished digital front door while keeping the practice information easy to scan and easy to trust.
                 </CardDescription>
@@ -478,7 +493,7 @@ function App() {
                 <Badge variant="outline" className="rounded-full border-primary/20 bg-primary/5 px-3 py-1 text-primary">
                   FAQ
                 </Badge>
-                <h2 className="text-4xl md:text-5xl">Questions the site can answer upfront.</h2>
+                <h2 className="text-[2.35rem] md:text-5xl">Questions the site can answer upfront.</h2>
                 <p className="text-base leading-8">
                   These FAQs keep expectations clear for new visitors while reinforcing the positioning of a calm, modern Palo Alto dental practice.
                 </p>
@@ -504,19 +519,19 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="mx-auto max-w-6xl px-4 pb-24 md:px-6">
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-primary/15 bg-[linear-gradient(135deg,rgba(255,255,255,0.93),rgba(231,244,241,0.94))] p-6 shadow-[0_28px_70px_-40px_rgba(33,60,57,0.5)] lg:p-8">
+        <section id="contact" className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-24 md:px-6">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-primary/15 bg-[linear-gradient(135deg,rgba(255,255,255,0.93),rgba(231,244,241,0.94))] p-5 shadow-[0_28px_70px_-40px_rgba(33,60,57,0.5)] sm:p-6 lg:p-8">
             <div className="pointer-events-none absolute inset-0">
               <div className="absolute -right-16 top-0 size-64 rounded-full bg-primary/10 blur-3xl" />
               <div className="absolute -left-20 bottom-0 size-56 rounded-full bg-accent/80 blur-3xl" />
             </div>
 
-            <div className="relative grid gap-10 lg:grid-cols-[1fr_0.82fr] lg:items-center">
+            <div className="relative grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-center lg:gap-10">
               <div className="space-y-6">
                 <Badge variant="outline" className="rounded-full border-primary/20 bg-primary/5 px-3 py-1 text-primary">
                   Contact and visit
                 </Badge>
-                <h2 className="max-w-xl text-4xl md:text-5xl">Ready for a cleaner, calmer dental experience in Palo Alto?</h2>
+                <h2 className="max-w-xl text-[2.35rem] md:text-5xl">Ready for a cleaner, calmer dental experience in Palo Alto?</h2>
                 <p className="max-w-2xl text-base leading-8">
                   Use this section as the conversion close: one clear phone number, one email, a simple service area reference, and office hours that make the next step feel obvious.
                 </p>
@@ -574,7 +589,7 @@ function App() {
                         <div className="mt-3 space-y-3">
                           {officeHours.map((row, index) => (
                             <div key={row.day}>
-                              <div className="flex items-center justify-between gap-4 text-sm">
+                              <div className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                                 <span className="font-medium text-foreground">{row.day}</span>
                                 <span className="text-muted-foreground">{row.hours}</span>
                               </div>
@@ -592,7 +607,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="mx-auto flex max-w-6xl flex-col gap-3 px-4 pb-28 pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-6 md:pb-8">
+      <footer className="mx-auto flex max-w-6xl flex-col gap-3 px-4 pb-32 pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-6 md:pb-8">
         <p>Dr. Wong Dental concept site for Palo Alto.</p>
         <p>Built as a single-page shadcn/ui experience.</p>
       </footer>
